@@ -1,3 +1,4 @@
+import json
 import sys
 import csv
 def main():
@@ -16,11 +17,28 @@ def main():
             search_sku = product[0].split(",")[1]
             if product_sku == search_sku:
                 print(product[0].split(","))
-                obj = {}
-                obj["product_id"] = int(product_id)
-                obj["sort_order"] = int(updated_order)
+                data_obj = {}
+                data_obj["product_id"] = int(product_id)
+                data_obj["sort_order"] = int(updated_order)
+
+                json_data  = json.dumps(data_obj)
+
+                try:
+                    with open("output.json", "r"):
+                        pass
+                except FileNotFoundError:
+                    output_file = open("output.json", "a")
+                    output_file.write("[" + "\n")
+
                 output_file = open("output.json", "a")
-                output_file.write(str(obj) + ",\n")
+
+
+                output_file.write(str(json_data) + ",\n")
+                break
+
+    output_file.write("]")
+
+
 
 if __name__ == "__main__":
     main()
