@@ -2,7 +2,6 @@ import sys
 import csv
 def main():
     sort_file = open("sortorder.csv","r")
-
     sort_sku = csv.reader(sort_file, delimiter="\n")
     for sku in list(sort_sku):
         id_file = open("productids.csv", "r")
@@ -18,9 +17,9 @@ def main():
             if product_sku == search_sku:
                 print(product[0].split(","))
                 obj = {}
-                obj["product_id"] = product_id
-                obj["sort_order"] = updated_order
-                output_file = open("output.txt", "a")
+                obj["product_id"] = int(product_id)
+                obj["sort_order"] = int(updated_order)
+                output_file = open("output.json", "a")
                 output_file.write(str(obj) + ",\n")
 
 if __name__ == "__main__":
