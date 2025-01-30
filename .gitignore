@@ -1,4 +1,3 @@
-*.txt
 *.csv
 .venv
 .DS_Store
